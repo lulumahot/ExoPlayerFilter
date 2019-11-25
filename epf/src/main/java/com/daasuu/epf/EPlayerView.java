@@ -18,7 +18,7 @@ public class EPlayerView extends GLSurfaceView implements VideoListener {
     private final static String TAG = EPlayerView.class.getSimpleName();
 
     private final EPlayerRenderer renderer;
-    private SimpleExoPlayer player;
+    public SimpleExoPlayer player;
 
     private float videoAspect = 1f;
     private PlayerScaleType playerScaleType = PlayerScaleType.RESIZE_FIT_WIDTH;
@@ -97,6 +97,12 @@ public class EPlayerView extends GLSurfaceView implements VideoListener {
         // Log.d(TAG, "width = " + width + " height = " + height + " unappliedRotationDegrees = " + unappliedRotationDegrees + " pixelWidthHeightRatio = " + pixelWidthHeightRatio);
         videoAspect = ((float) width / height) * pixelWidthHeightRatio;
         // Log.d(TAG, "videoAspect = " + videoAspect);
+        requestLayout();
+    }
+    
+    @Override
+    public void onSurfaceSizeChanged(int width, int height){
+        videoAspect = (float) width / height;
         requestLayout();
     }
 
